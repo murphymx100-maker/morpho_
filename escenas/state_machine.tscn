@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://cepd2ax0xgbcx"]
+
+[ext_resource type="Script" uid="uid://oqhj23r84aqd" path="res://script/state_machine.gd" id="1_mtg4q"]
+[ext_resource type="Script" uid="uid://cvco0wi2yqd2c" path="res://script/player_states/player_idle.gd" id="2_aqxq1"]
+[ext_resource type="Script" uid="uid://bbqteduwo2hd2" path="res://script/player_states/player_walk.gd" id="3_nhxbb"]
+[ext_resource type="Script" uid="uid://bmx75yysggx7v" path="res://script/player_states/player_jump.gd" id="4_pfkfp"]
+[ext_resource type="Script" uid="uid://bmscjmm2b0k64" path="res://script/player_states/player_falling.gd" id="5_nul74"]
+[ext_resource type="Script" uid="uid://viwkdruptfcb" path="res://script/player_states/player_attack.gd" id="6_lddy6"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_mtg4q")
+
+[node name="player_idle" type="Node" parent="."]
+script = ExtResource("2_aqxq1")
+
+[node name="player_walk" type="Node" parent="."]
+script = ExtResource("3_nhxbb")
+
+[node name="player_jump" type="Node" parent="."]
+script = ExtResource("4_pfkfp")
+
+[node name="player_falling" type="Node" parent="."]
+script = ExtResource("5_nul74")
+
+[node name="player_attack" type="Node" parent="."]
+script = ExtResource("6_lddy6")
