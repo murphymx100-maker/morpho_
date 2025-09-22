@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://s1qgq0iynddt"]
+
+[ext_resource type="Texture2D" uid="uid://dw31cxf5oppcn" path="res://assets/Default/character_roundRed.png" id="1_vr67e"]
+[ext_resource type="Script" uid="uid://di2aqxu1qgvv7" path="res://script/enemy.gd" id="1_vs78y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vs78y"]
+radius = 18.0
+height = 54.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vs78y"]
+radius = 25.02
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(-1, 1)
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_vs78y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vr67e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_vs78y")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+
+[node name="right" type="RayCast2D" parent="."]
+target_position = Vector2(178, 0)
+
+[node name="left" type="RayCast2D" parent="."]
+target_position = Vector2(-183, -1)
+
+[node name="hit_box" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
+shape = SubResource("CircleShape2D_vs78y")
+debug_color = Color(0.513297, 0.241989, 0.699208, 0.42)
+
+[connection signal="area_entered" from="hit_box" to="." method="_on_hit_box_area_entered"]

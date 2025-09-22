@@ -9,6 +9,7 @@ var animations:Player_animations = Player_animations.new()
 @export var speed = 500
 @export var acceleration = 1500
 @export var friction = 1500
+var facing_right = true
 
 @export_category("JUMP")
 @export var jump_force = -900
@@ -16,14 +17,20 @@ var animations:Player_animations = Player_animations.new()
 @export var air_friction = 500
 @onready var coyote_jump: Timer = $coyote_jump
 
+@export_category("COMBAT")
+@export var attack : bool = false
+@export var health = 5
+
 
 func _ready() -> void:
-	$Sprite2D/Sprite2D2.visible = false 
+	$hit_box/CollisionShape2D.disabled = true
 
 func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_pressed("attack"):
-		pass
+		attack = true
+
+
 
 func _physics_process(delta: float) -> void:
 	var input_axis = Input.get_axis("left","right")
@@ -33,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	apply_friction(input_axis, delta)
 	handle_jump()
 	handle_air_acceleration(input_axis, delta)
+	animation()
 	flip()
 	
 	var was_on_floor = is_on_floor()
@@ -71,7 +79,20 @@ func handle_air_acceleration(input_axis, delta):
 
 func flip():
 	if velocity.x > 0.0:
+		facing_right = true
 		scale.x = scale.y * 1
 	if velocity.x < 0.0:
+		facing_right = false
 		scale.x = scale.y * -1
-		
+
+func animation():
+	if attack:
+		$anim.play("attack")
+		await ($anim.animation_finished)
+		attack = false
+
+
+func _on_hard_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		print("perdiste vida")
+		health -= 1

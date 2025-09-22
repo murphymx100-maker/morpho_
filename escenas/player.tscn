@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://xkq1ardhp4h2" path="res://assets/Default/character_roundGreen.png" id="1_esbpa"]
 [ext_resource type="Script" uid="uid://x61hyriodxwg" path="res://script/player.gd" id="1_kkt6c"]
-[ext_resource type="Texture2D" uid="uid://dkppiuve8kxc2" path="res://assets/Default/character_handGreen.png" id="3_j7xnp"]
 [ext_resource type="PackedScene" uid="uid://cepd2ax0xgbcx" path="res://escenas/state_machine.tscn" id="4_k4kro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kkt6c"]
@@ -10,46 +9,37 @@ radius = 17.0
 height = 57.9956
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j7xnp"]
-radius = 17.0
-height = 58.0
+radius = 21.0
+height = 68.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7xnp"]
+size = Vector2(31, 35)
 
 [sub_resource type="Animation" id="Animation_t3yu4"]
-length = 0.001
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Sprite2D2:position")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-41.0001, -30.9998)]
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Sprite2D2:visible")
+tracks/1/path = NodePath("hit_box/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.61386]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_k4kro"]
@@ -58,26 +48,14 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Sprite2D2:position")
+tracks/0/path = NodePath("hit_box/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.944308),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-41.0001, -30.9998), Vector2(-0.000225067, -63)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Sprite2D2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.944308, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, true, true, false]
+"values": [true, false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_kkt6c"]
@@ -97,18 +75,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_j7xnp"]
 resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Sprite2D2:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_6nxto"]
 resource_name = "move"
@@ -135,18 +101,14 @@ _data = {
 &"move": SubResource("Animation_6nxto")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
 script = ExtResource("1_kkt6c")
 speed = 400
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.61386
+rotation = 1.56532
 texture = ExtResource("1_esbpa")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-41.0001, -30.9998)
-rotation = -1.5708
-texture = ExtResource("3_j7xnp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
@@ -154,12 +116,21 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kkt6c")
 
 [node name="hard_box" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hard_box"]
 position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_j7xnp")
 debug_color = Color(0.736724, 0.00226831, 0.935591, 0.42)
+
+[node name="hit_box" type="Area2D" parent="." groups=["attack"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
+position = Vector2(50, 0)
+shape = SubResource("RectangleShape2D_j7xnp")
 
 [node name="coyote_jump" type="Timer" parent="."]
 wait_time = 0.15
@@ -169,9 +140,10 @@ one_shot = true
 libraries = {
 &"": SubResource("AnimationLibrary_t3yu4")
 }
-speed_scale = 4.0
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("default_state") instance=ExtResource("4_k4kro")]
 default_state = NodePath("player_idle")
+
+[connection signal="area_entered" from="hard_box" to="." method="_on_hard_box_area_entered"]
 
 [editable path="StateMachine"]
