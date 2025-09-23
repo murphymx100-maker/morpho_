@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2b2xmj4jiftq"]
+
+[ext_resource type="Script" uid="uid://bqn88vln6oxsh" path="res://script/options.gd" id="1_kgy1p"]
+[ext_resource type="Texture2D" uid="uid://duitqqfmvhf4k" path="res://assets/06934cdf18f02593c8d92c7350b1cbad.jpg" id="1_mbtxq"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kgy1p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mbtxq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -291.0
+offset_top = -235.0
+offset_right = 291.0
+offset_bottom = 235.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 41
+
+[node name="resolution" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "RESOLUCION"
+
+[node name="volume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "AUDIO"
+
+[node name="back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "ATRAS"
+
+[connection signal="pressed" from="VBoxContainer/resolution" to="." method="_on_resolution_pressed"]
+[connection signal="pressed" from="VBoxContainer/volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

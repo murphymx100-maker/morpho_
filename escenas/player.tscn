@@ -102,7 +102,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_kkt6c")
 speed = 400
 
