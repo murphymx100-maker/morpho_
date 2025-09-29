@@ -15,16 +15,28 @@ run/main_scene="uid://dmqbysuslhk2x"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Balloon="*res://escenas/dialogue/balloon.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://escenas/dialogue/balloon.tscn"
+
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://assets/": "red",
+"res://dialogues/": "pink",
 "res://escenas/": "blue",
 "res://script/": "green"
 }
@@ -61,9 +73,14 @@ attack={
 ]
 }
 
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogues/my_dialogue.dialogue")
+
 [layer_names]
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="ground"
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="attack"
+2d_physics/layer_5="dialogue"
