@@ -4,8 +4,9 @@ class_name StateMachine
 @onready var controlled_node: Node = self.owner
 
 @export var default_state:StateBase
+@export var state_label: Label
 
-var current_state:StateBase = null
+var current_state: StateBase = null
 
 func _ready() -> void:
 	call_deferred("state_default_start")
@@ -15,7 +16,9 @@ func state_default_start() -> void:
 	state_start()
 
 func state_start() -> void:
-	prints("StateMachine", controlled_node.name, "Start state", current_state.name)
+	if is_instance_valid(state_label):
+		state_label.text = current_state.name
+	#prints("StateMachine", controlled_node.name, "Start state", current_state.name)
 	current_state.controlled_node = controlled_node
 	current_state.state_machine = self
 	current_state.start()
@@ -33,7 +36,7 @@ func _process(delta: float) -> void:
 	
 func _physics_process(delta: float) -> void:
 	if current_state and current_state.has_method("on_physics_process"): 
-		current_state.on_physics_procces(delta)
+		current_state.on_physics_process(delta)
 
 func _input(event: InputEvent) -> void:
 	if current_state and current_state.has_method("on_input"): 

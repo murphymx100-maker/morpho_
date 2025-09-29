@@ -1,15 +1,26 @@
 ~ start
-morpho: ...
-cucaracha: que onda [wave]rey[/wave].[wait=2] se te cayo la corona. 
-cucaracha: naaa mentira no te asustes.
-cucaracha: te queria preguntar que sabor de helado te gusta mas.
+if GameGlobals.veces_hablaste_cucaracha == 0:
+	do GameGlobals.veces_hablaste_cucaracha += 1
+	morpho: ...
+	cucaracha: que onda [wave]rey[/wave].[wait=0.5] se te cayo la corona. 
+	cucaracha: naaa mentira no te asustes.
+	cucaracha: te queria preguntar que sabor de helado te gusta mas.
 
-cucaracha: menta granizada o kinotos al whisky.
-- menta granizada
-	cucaracha: sos un genio y te admiro una banda.
-- kinotos al whisky
-	cucaracha: sos un degenerado pero te respeto.
-- (no escuchaste nada de lo que te dijo) => start
-- salir => END
-morpho: ...
+	cucaracha: menta granizada o kinotos al whisky.
+	- menta granizada
+		cucaracha: sos un genio y te admiro una banda.
+		set GameGlobals.le_caes_bien_a_la_cuca = true
+	- kinotos al whisky
+		cucaracha: sos un degenerado pero te respeto.
+		set GameGlobals.le_caes_bien_a_la_cuca = false
+	- (no escuchaste nada de lo que te dijo) => start
+	- salir => END
+	morpho: ...
+else:
+	if GameGlobals.le_caes_bien_a_la_cuca:
+		cucaracha: nos vemos campeon
+	else:
+		cucaracha: sali de aca guachin
+
 => END
+

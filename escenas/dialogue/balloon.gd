@@ -49,13 +49,17 @@ var mutation_cooldown: Timer = Timer.new()
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 
 ## The menu of responses
-@onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
+@onready var responses_menu: DialogueResponsesMenu = %DialogueResponsesMenu
 
 @onready var example_balloon: CanvasLayer = $"."
 
 func _ready() -> void:
-	example_balloon.hide()
-	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
+	get_tree().paused = true
+	# Continua el juego despues de cerrar el dialogo
+	DialogueManager.dialogue_ended.connect(
+		(func(): 
+			get_tree().paused = false).unbind(1))
+	DialogueManager.mutated.connect(_on_mutated)
 
 	# If the responses menu doesn't have a next action set, use this one
 	if responses_menu.next_action.is_empty():

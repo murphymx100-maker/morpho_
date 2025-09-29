@@ -3,6 +3,7 @@ class_name Player
 
 var states:Player_states = Player_states.new()
 var animations:Player_animations = Player_animations.new()
+@onready var state_label: Label = $StateLabel
 
 @export_category("MOVEMENT")
 @export var gravity_scale = 2
@@ -22,8 +23,10 @@ var facing_right = true
 @export var health = 5
 
 
+
 func _ready() -> void:
 	$hit_box/CollisionShape2D.disabled = true
+
 
 func _input(event: InputEvent) -> void:
 	
@@ -33,6 +36,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	state_label.global_position = self.global_position + Vector2(0, -50)
 	var input_axis = Input.get_axis("left","right")
 	
 	apply_gravity(delta)

@@ -8,7 +8,7 @@
 size = Vector2(106, 104)
 
 [node name="NPC" type="Area2D"]
-collision_mask = 16
+collision_layer = 16
 script = ExtResource("1_emnu0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,6 +19,7 @@ position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_nvkc6")
 
 [node name="ExclamationMark" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1, -61)
 scale = Vector2(0.625, 0.5)
 texture = ExtResource("3_ihyvn")
