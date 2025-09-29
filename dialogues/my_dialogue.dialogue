@@ -1,0 +1,15 @@
+~ start
+morpho: ...
+cucaracha: que onda [wave]rey[/wave].[wait=2] se te cayo la corona. 
+cucaracha: naaa mentira no te asustes.
+cucaracha: te queria preguntar que sabor de helado te gusta mas.
+
+cucaracha: menta granizada o kinotos al whisky.
+- menta granizada
+	cucaracha: sos un genio y te admiro una banda.
+- kinotos al whisky
+	cucaracha: sos un degenerado pero te respeto.
+- (no escuchaste nada de lo que te dijo) => start
+- salir => END
+morpho: ...
+=> END
