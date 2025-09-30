@@ -18,9 +18,9 @@ if GameGlobals.veces_hablaste_cucaracha == 0:
 	morpho: ...
 else:
 	if GameGlobals.le_caes_bien_a_la_cuca:
-		cucaracha: nos vemos campeon
+		cucaracha: nos vemos campeon => END
 	else:
-		cucaracha: sali de aca guachin
+		cucaracha: sali de aca guachin => END
 
 => END
 
