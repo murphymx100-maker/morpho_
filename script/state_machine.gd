@@ -23,7 +23,7 @@ func state_start() -> void:
 	current_state.state_machine = self
 	current_state.start()
 
-func chage_to(new_state:String) -> void:
+func change_to(new_state:String) -> void:
 	if current_state and current_state.has_method("end"): 
 		current_state.end()
 	current_state = get_node(new_state)

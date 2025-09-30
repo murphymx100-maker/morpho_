@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bfmmbs4umwox5" path="res://escenas/player.tscn" id="1_oid7m"]
 [ext_resource type="Texture2D" uid="uid://bmiu3jdt5xqa7" path="res://assets/Retina/tile.png" id="2_0fqcy"]
 [ext_resource type="Script" uid="uid://bwqld3bxl273v" path="res://script/camera_2d_2.gd" id="2_l1tm0"]
-[ext_resource type="PackedScene" uid="uid://dy8taq07dthqn" path="res://escenas/npc.tscn" id="3_c4gf3"]
+[ext_resource type="PackedScene" path="res://escenas/npc.tscn" id="3_c4gf3"]
 [ext_resource type="Texture2D" uid="uid://cmvmen28khgpr" path="res://assets/Default/character_handYellow.png" id="6_hhma4"]
 [ext_resource type="Texture2D" uid="uid://c5nnfpadhva26" path="res://assets/Default/character_handRed.png" id="7_5wos8"]
 [ext_resource type="Texture2D" uid="uid://b0lxjujlhqt25" path="res://assets/Default/tile_blockDoor.png" id="7_p87n4"]
@@ -160,13 +160,14 @@ sources/0 = SubResource("TileSetAtlasSource_l1tm0")
 [node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_oid7m")]
-position = Vector2(433, 908)
+position = Vector2(299, 891)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, 0)
 zoom = Vector2(1.5, 1.5)
 limit_bottom = 1110
 position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
 script = ExtResource("2_l1tm0")
 
 [node name="AreaDetector" type="Area2D" parent="Player"]

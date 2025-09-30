@@ -1,10 +1,12 @@
 extends Player_gravity
 
 
-func on_physics_process(delta):
+func on_physics_process(delta):	
 	player.velocity.x = \
-		Input.get_axis("left", "right") * player.speed
-	if is_zero_approx(player.velocity.y):
-		if player.is_on_floor():
-			state_machine.chage_to("player_idle")
+		Input.get_axis("ui_left", "ui_right") * player.speed	
 	
+	if player.velocity.y >= 0 and player.is_on_floor(): 
+		state_machine.change_to(player.states.Idle)
+	
+	handle_gravity(delta)
+	controlled_node.move_and_slide()

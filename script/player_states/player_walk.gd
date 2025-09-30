@@ -1,17 +1,18 @@
 extends Player_gravity
 
 
+
 func on_physic_process(delta):
-	controlled_node.play_animation(controlled_node.animtion.walk)
-	controlled_node.velocity.x = \
-		Input.get_axis("left","right") * controlled_node.movement_speed
+	player.play_animation(player.animtion.walk)
+	player.velocity.x = \
+		Input.get_axis("left","right") * player.speed.acceleration.friction
 	
 
 
 func on_input(event):
 	if Input.is_action_just_pressed("jump"):
-		state_machine.chage_to("player_jump")
+		state_machine.change_to(player.states.Jump)
 	elif Input.is_action_just_pressed("attack"):
-		state_machine.chage_to("player_attack")
+		state_machine.change_to(player.states.Attack)
 	elif not Input.is_action_pressed("left") or Input.is_action_pressed("right"):
-		state_machine.chage_to("player_idle")
+		state_machine.change_to(player.states.Idle)
