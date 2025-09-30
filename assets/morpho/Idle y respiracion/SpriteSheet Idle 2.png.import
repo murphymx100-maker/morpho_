@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bln2madk0qlch"
-path="res://.godot/imported/c3ca4418-3dcf-498e-90ac-3ee4e28fc354.jpg-65daf055989e6b42cd483b6e42b6249d.ctex"
+uid="uid://bmlct4haybvlg"
+path="res://.godot/imported/SpriteSheet Idle 2.png-93e954cbeb9880a4bfd32f2c9a3f1945.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/c3ca4418-3dcf-498e-90ac-3ee4e28fc354.jpg"
-dest_files=["res://.godot/imported/c3ca4418-3dcf-498e-90ac-3ee4e28fc354.jpg-65daf055989e6b42cd483b6e42b6249d.ctex"]
+source_file="res://assets/morpho/Idle y respiracion/SpriteSheet Idle 2.png"
+dest_files=["res://.godot/imported/SpriteSheet Idle 2.png-93e954cbeb9880a4bfd32f2c9a3f1945.ctex"]
 
 [params]
 

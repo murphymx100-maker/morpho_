@@ -4,6 +4,7 @@ class_name Player
 var states:Player_states = Player_states.new()
 var animations:Player_animations = Player_animations.new()
 @onready var state_label: Label = $StateLabel
+@onready var anim: AnimationPlayer = $anim
 
 @export_category("MOVEMENT")
 @export var gravity_scale = 2
@@ -101,9 +102,16 @@ func animation():
 		$anim.play("attack")
 		await ($anim.animation_finished)
 		attack = false
+	if velocity.x != 0:
+		$anim.play("walk")
+	if velocity.x == 0:
+		$anim.play("idle")
 
 
 func _on_hard_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		print("perdiste vida")
 		health -= 1
+
+func play_animation(animation_name:String):
+	anim.play(animation_name)
