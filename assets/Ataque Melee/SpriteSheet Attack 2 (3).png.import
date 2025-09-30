@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bln2madk0qlch"
-path="res://.godot/imported/c3ca4418-3dcf-498e-90ac-3ee4e28fc354.jpg-65daf055989e6b42cd483b6e42b6249d.ctex"
+uid="uid://v7qfxt24esbu"
+path="res://.godot/imported/SpriteSheet Attack 2 (3).png-521f3a4d43a5da30f2f478548bf90029.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/c3ca4418-3dcf-498e-90ac-3ee4e28fc354.jpg"
-dest_files=["res://.godot/imported/c3ca4418-3dcf-498e-90ac-3ee4e28fc354.jpg-65daf055989e6b42cd483b6e42b6249d.ctex"]
+source_file="res://assets/Ataque Melee/SpriteSheet Attack 2 (3).png"
+dest_files=["res://.godot/imported/SpriteSheet Attack 2 (3).png-521f3a4d43a5da30f2f478548bf90029.ctex"]
 
 [params]
 

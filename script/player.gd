@@ -6,15 +6,15 @@ var animations:Player_animations = Player_animations.new()
 
 @export_category("MOVEMENT")
 @export var gravity_scale = 2
-@export var speed = 500
-@export var acceleration = 1500
-@export var friction = 1500
+@export var speed = 500.0
+@export var acceleration = 1500.0
+@export var friction = 1500.0
 var facing_right = true
 
 @export_category("JUMP")
-@export var jump_force = -900
-@export var air_acceleration = 2000
-@export var air_friction = 500
+@export var jump_force = -900.0
+@export var air_acceleration = 2000.0
+@export var air_friction = 500.0
 @onready var coyote_jump: Timer = $coyote_jump
 
 @export_category("COMBAT")
@@ -90,6 +90,10 @@ func animation():
 		$anim.play("attack")
 		await ($anim.animation_finished)
 		attack = false
+	if velocity.x != 0:
+			$anim.play("walk")
+	if velocity.x == 0:
+			$anim.play("idle")
 
 
 func _on_hard_box_area_entered(area: Area2D) -> void:
