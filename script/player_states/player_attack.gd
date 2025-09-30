@@ -6,6 +6,7 @@ func start():
 
 func on_physic_process(delta):
 	state_machine.chage_to("player_idle")
+	
 	#controlled_node.play_animation(controlled_node.animtion.walk)
 	#controlled_node.velocity.x = \
 		#Input.get_axis("left","right") * controlled_node.movement_speed

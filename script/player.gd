@@ -23,13 +23,20 @@ var facing_right = true
 @export var health = 5
 
 
+var ataque_adquirido := false
+var doble_salto_adquirido := false
+var dash_adquirido := false
+var disparo_adquirido := false
+
+var lista_habilidades_poseidas : Array = ["atacar", "salto_largo"]
+var lista_habilidades_equipadas : Array = []
+
 
 func _ready() -> void:
 	$hit_box/CollisionShape2D.disabled = true
 
 
 func _input(event: InputEvent) -> void:
-	
 	if Input.is_action_pressed("attack"):
 		attack = true
 
