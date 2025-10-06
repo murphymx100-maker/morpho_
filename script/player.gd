@@ -35,10 +35,13 @@ var lista_habilidades_equipadas : Array = []
 
 func _ready() -> void:
 	$hit_box/CollisionShape2D.disabled = true
+	$Sprite2D/Sprite2D2.hide()
+
 
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_pressed("attack"):
+		play_animation(animations.attack)
 		attack = true
 
 
@@ -52,7 +55,6 @@ func _physics_process(delta: float) -> void:
 	apply_friction(input_axis, delta)
 	handle_jump()
 	handle_air_acceleration(input_axis, delta)
-	animation()
 	flip()
 	
 	var was_on_floor = is_on_floor()
@@ -68,7 +70,10 @@ func apply_gravity(delta):
 func handle_acceleration(input_axis, delta):
 	if not is_on_floor(): return
 	if input_axis != 0:
+		play_animation(animations.walk)
 		velocity.x = move_toward(velocity.x, speed * input_axis, acceleration * delta)
+	else:
+		play_animation(animations.idle)
 
 func apply_friction(input_axis, delta):
 	if input_axis == 0 and is_on_floor():
@@ -77,6 +82,7 @@ func apply_friction(input_axis, delta):
 func handle_jump():
 	if is_on_floor() or coyote_jump.time_left > 0:
 		if Input.is_action_pressed("jump"):
+			play_animation(animations.jump)
 			velocity.y = jump_force
 			coyote_jump.stop()
 			
@@ -96,16 +102,6 @@ func flip():
 	if velocity.x < 0.0:
 		facing_right = false
 		scale.x = scale.y * -1
-
-func animation():
-	if attack:
-		$anim.play("attack")
-		await ($anim.animation_finished)
-		attack = false
-	if velocity.x != 0:
-		$anim.play("walk")
-	if velocity.x == 0:
-		$anim.play("idle")
 
 
 func _on_hard_box_area_entered(area: Area2D) -> void:
